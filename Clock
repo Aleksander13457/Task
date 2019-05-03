@@ -1,0 +1,48 @@
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Clock clock1 = new Clock(11,30);
+        Clock clock2 = new Clock(12,59);
+
+        LinkedList<Clock>clockLinkedList = new LinkedList<>();
+        clockLinkedList.add(clock1);
+        clockLinkedList.add(clock2);
+
+        changeMinute(clockLinkedList);
+    }
+
+    public static void changeMinute(LinkedList<Clock> clockLinkedList) {
+        for (int i = 0; i < clockLinkedList.size(); i++) {
+            clockLinkedList.get(i).setClockTime(clockLinkedList.get(i).getClockTime().plusMinutes(1));
+
+        }
+        System.out.println("Czas po dodaniu jednej minuty \n" + clockLinkedList) ;
+    }
+}
+
+import java.time.LocalTime;
+
+public class Clock {
+    private LocalTime clockTime;
+
+    public Clock(int hour, int minute) {
+        this.clockTime = LocalTime.of(hour,minute);
+    }
+
+    public LocalTime getClockTime() {
+        return clockTime;
+    }
+
+    public void setClockTime(LocalTime clockTime) {
+        this.clockTime = clockTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Clock{" +
+                "clockTime=" + clockTime +
+                '}';
+    }
+}
