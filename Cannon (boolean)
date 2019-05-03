@@ -1,0 +1,75 @@
+import java.util.LinkedList;
+
+public class Start {
+    public static void main(String[] args) {
+        LinkedList<Cannon> armaty = new LinkedList<>();
+
+        Cannon cannon1 = new Cannon(false);
+        Cannon cannon2 = new Cannon(false);
+        Cannon cannon3 = new Cannon(true);
+        Cannon cannon4 = new Cannon(false);
+        Cannon cannon5 = new Cannon(false);
+
+        armaty.add(cannon1);
+        armaty.add(cannon2);
+        armaty.add(cannon3);
+        armaty.add(cannon4);
+        armaty.add(cannon5);
+
+        primaryCondition(armaty);
+        cannonsCondition(armaty);
+        System.out.println();
+        cannonsReady(armaty);
+
+    }
+
+    public static void primaryCondition(LinkedList<Cannon> armaty) {
+        int counterFirst = 0;
+        for (int i = 0; i < armaty.size(); i++) {
+            counterFirst++;
+            System.out.println("Stan armaty " + counterFirst + " " + armaty.get(i).loaded);
+        }
+    }
+
+    public static void cannonsReady(LinkedList<Cannon> armaty) {
+        for (int i = 0; i < armaty.size(); i++) {
+            if (armaty.get(i).loaded == false) {
+                armaty.get(i).loaded = true;
+            }
+        }
+        System.out.println("Wszystkie armaty gotowe już do wystrzału");
+        System.out.println(armaty);
+    }
+
+    public static void cannonsCondition(LinkedList<Cannon> armaty) {
+        int counter = 0;
+        for (int i = 0; i < armaty.size(); i++) {
+            if (armaty.get(i).loaded == false) {
+                counter++;
+                System.out.println("armata nr " + counter + " " + "nie jest załadowana, trwa ładowanie");
+            } else if (armaty.get(i).loaded == true) {
+                counter = counter + 1;
+                System.out.println("armata nr " + counter + " jest już załadowana");
+            }
+
+        }
+    }
+}
+package abstractTask.Cannon;
+
+import java.util.LinkedList;
+
+public class Cannon {
+    boolean loaded;
+
+    public Cannon(boolean loaded) {
+        this.loaded = loaded;
+    }
+
+    @Override
+    public String toString() {
+        return "Działo załadowane: " + loaded;
+    }
+
+}
+
